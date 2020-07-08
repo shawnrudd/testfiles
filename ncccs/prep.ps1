@@ -116,3 +116,8 @@ if (test-path -path $PHASE1) {
   Rename-Item -Path $PHASE1 -NewName $OLDPHASE1
 }
 Rename-Computer -NewName $HOSTNAME -Restart
+########################################################################
+## If we got here, rename failed.  Put the build file back
+########################################################################
+Echo $error[0] > $ERROUT
+Rename-Item -Path $OLDPHASE1 -NewName $PHASE1
